@@ -7,6 +7,12 @@ use App\Models\Bookmark;
 
 class BookmarkController extends Controller
 {
+    public function show()
+    {
+        $bookmark = Bookmark::query()->where('id', request('bookmarkId'))->first();
+        return json_encode($bookmark);
+    }
+    
     public function index()
     {
         return json_encode(Bookmark::all());
@@ -24,9 +30,4 @@ class BookmarkController extends Controller
         return json_encode($bookmark);
     }
 
-    public function show()
-    {
-        $bookmark = Bookmark::query()->where('id', request('bookmarkId'))->first();
-        return json_encode($bookmark);
-    }
 }

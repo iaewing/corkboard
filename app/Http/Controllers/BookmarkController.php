@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Bookmark as BookmarkModel;
+use App\Models\Bookmark;
 
-class Bookmark extends Controller
+class BookmarkController extends Controller
 {
     public function index()
     {
-        return json_encode(\App\Models\Bookmark::all());
+        return json_encode(Bookmark::all());
     }
 
     public function store()
     {
-        $bookmark = \App\Models\Bookmark::create([
+        $bookmark = Bookmark::create([
             'user_id' => request('userId'),
             'title' => request('title'),
             'url' => request('url'),
@@ -26,7 +26,7 @@ class Bookmark extends Controller
 
     public function show()
     {
-        $bookmark = BookmarkModel::query()->where('id', request('bookmarkId'))->first();
+        $bookmark = Bookmark::query()->where('id', request('bookmarkId'))->first();
         return json_encode($bookmark);
     }
 }

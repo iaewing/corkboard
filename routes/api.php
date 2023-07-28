@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Bookmark;
+use App\Http\Controllers\BookmarkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,10 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return json_encode(\App\Models\Bookmark::all());
 // });
 
-Route::controller(Bookmark::class)->group(function () {
-    Route::get('/bookmarks', [Bookmark::class, 'index']);
-    Route::post('/{userId}/bookmarks', [Bookmark::class, 'store']);
-    Route::get('/bookmarks/{bookmarkId}', [Bookmark::class, 'show']);
-    Route::put('/bookmarks/{bookmark}', [Bookmark::class, 'update']);
-    Route::delete('/bookmarks/{bookmark}', [Bookmark::class, 'destroy']);
+Route::controller(BookmarkController::class)->group(function () {
+    Route::get('/bookmarks', [BookmarkController::class, 'index']);
+    Route::post('/{userId}/bookmarks', [BookmarkController::class, 'store']);
+    Route::get('/bookmarks/{bookmarkId}', [BookmarkController::class, 'show']);
+    Route::put('/bookmarks/{bookmark}', [BookmarkController::class, 'update']);
+    Route::delete('/bookmarks/{bookmark}', [BookmarkController::class, 'destroy']);
 });

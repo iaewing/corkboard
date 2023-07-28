@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->string('url');
-            $table->json('tags');
+            $table->json('tags')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

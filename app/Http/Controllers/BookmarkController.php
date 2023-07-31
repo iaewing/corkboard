@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Bookmark;
 
 class BookmarkController extends Controller
@@ -21,7 +20,7 @@ class BookmarkController extends Controller
     public function store()
     {
         $bookmark = Bookmark::create([
-            'user_id' => request('userId'),
+            'user_id' => request('user_id'),
             'title' => request('title'),
             'url' => request('url'),
             'tags' => json_encode(request('tags')),

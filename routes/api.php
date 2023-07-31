@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::controller(BookmarkController::class)->group(function () {
     Route::get('/bookmarks', [BookmarkController::class, 'index']);
-    Route::post('/{userId}/bookmarks', [BookmarkController::class, 'store']);
+    Route::post('/bookmarks', [BookmarkController::class, 'store']);
     Route::get('/bookmarks/{bookmarkId}', [BookmarkController::class, 'show']);
     Route::put('/bookmarks/{bookmark}', [BookmarkController::class, 'update']);
     Route::delete('/bookmarks/{bookmark}', [BookmarkController::class, 'destroy']);

@@ -19,14 +19,21 @@ class BookmarkController extends Controller
 
     public function store()
     {
-        $bookmark = Bookmark::create([
+        return Bookmark::query()->create([
             'user_id' => request('user_id'),
             'title' => request('title'),
             'url' => request('url'),
-            'tags' => json_encode(request('tags')),
+            'tags' => request('tags'),
         ]);
-
-        return json_encode($bookmark);
     }
 
+    public function update()
+    {
+        return Bookmark::query()->update([
+            'user_id' => request('user_id'),
+            'title' => request('title'),
+            'url' => request('url'),
+            'tags' => request('tags'),
+        ]);
+    }
 }

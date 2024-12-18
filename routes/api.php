@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\BookmarkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -14,16 +15,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::post('/login', [AuthenticatedSessionController::class, 'apiLogin'])->name('login');
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('/bookmarks', function () {
-//     return json_encode(\App\Models\Bookmark::all());
-// });
-
-Route::controller(BookmarkController::class)->group(function () {
+Route::controller(BookmarkController::class)->middleware('auth:sanctum')->group(function () {
     Route::get('/bookmarks/{user}', [BookmarkController::class, 'index'])->name('bookmark.index');
     Route::post('/bookmarks', [BookmarkController::class, 'store'])->name('bookmark.store');
     Route::get('/bookmarks/{bookmark}', [BookmarkController::class, 'show'])->name('bookmark.show');

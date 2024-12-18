@@ -32,4 +32,13 @@ class BookmarkFactory extends Factory
             ];
         });
     }
+
+    public function withUser(User $user): Factory
+    {
+        return $this->state(function () use ($user) {
+            return [
+                'user_id' => $user
+            ];
+        });
+    }
 }

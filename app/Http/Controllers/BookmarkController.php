@@ -8,10 +8,10 @@ class BookmarkController extends Controller
 {
     public function show()
     {
-        $bookmark = Bookmark::query()->where('id', request('bookmarkId'))->first();
+        $bookmark = Bookmark::query()->where('id', request('bookmark'))->first();
         return json_encode($bookmark);
     }
-    
+
     public function index()
     {
         return json_encode(Bookmark::all());

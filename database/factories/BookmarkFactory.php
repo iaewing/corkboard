@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,9 +18,18 @@ class BookmarkFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id' => User::factory(),
             'title' => fake()->title(),
             'url' => fake()->url(),
-            'tags' => json_encode(fake()->words(3)),
         ];
+    }
+
+    public function withTags(): Factory
+    {
+        return $this->state(function () {
+            return [
+                'tags' => json_encode(fake()->words(3))
+            ];
+        });
     }
 }

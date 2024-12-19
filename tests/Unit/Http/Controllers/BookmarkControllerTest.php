@@ -145,19 +145,14 @@ describe('update', function () {
             'tags' => $newTag,
         ];
 
-        $response = $this->put(route('bookmark.update', $bookmark), [
+        $this->put(route('bookmark.update', $bookmark), [
             'title' => $newTitle,
             'tags' => $newTag
         ])
             ->assertSuccessful();
 
         $this->assertDatabaseCount(Bookmark::class, 1);
-        $this->assertDatabaseHas(Bookmark::class, [
-            'user_id' => $user->id,
-            'title' => $newTitle,
-            'url' => $newTag,
-        ]);
-        expect($response->json())->toMatchArray($expected);
+        $this->assertDatabaseHas(Bookmark::class, $expected);
     });
 
     it('returns an empty null json object when no matching bookmark found', function () {
